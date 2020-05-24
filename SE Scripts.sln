@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SE Scripts", "SE Scripts.csproj", "{CE6298F9-6433-4A0A-8402-5A124AD4A04A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE6298F9-6433-4A0A-8402-5A124AD4A04A}.Debug|x64.ActiveCfg = Debug|x64
+		{CE6298F9-6433-4A0A-8402-5A124AD4A04A}.Debug|x64.Build.0 = Debug|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2421532E-AB25-48A0-B55E-F830B1B4BF76}
+	EndGlobalSection
+EndGlobal
