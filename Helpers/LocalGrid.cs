@@ -4,11 +4,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VRage.Game.ModAPI.Ingame;
 
 namespace IngameScript.Helpers
 {
 	public static class LocalGrid
 	{
+		public static List<IMyInventory> GetAllLocalInventories()
+		{
+			List<IMyTerminalBlock> allBlocks = new List<IMyTerminalBlock>();
+			List<IMyInventory> inventories = new List<IMyInventory>();
+			GridTerminalSystem.GetBlocks(allBlocks); // Populate list with all blocks on the grid
+
+			foreach (IMyTerminalBlock block in allBlocks)
+			{
+				if (IsLocal(block, GridTerminalSystem))
+				{
+					if (block is IMyCargoContainer || block is IMyShipConnector || block is IMyAssembler)
+					{
+						IMyInventory inventory = block.GetInventory(0); //Get block inventory
+						List<MyInventoryItem> invList = new List<MyInventoryItem>();
+						inventory.GetItems(invList, null);
+						if (block is IMyAssembler)
+						{
+							//Since this is an assembler, get its output inventory
+							inventory = block.GetInventory(1);
+
+						}
+						if (invList.Count > 0)
+						{
+							inventories.Add(inventory);
+						}
+					}
+				}
+			}
+
+			return inventories;
+		}
+
 		// Returns true if a block is on the same grid as the running script's Programmable Block
 		public static bool IsLocal(IMyTerminalBlock b, IMyGridTerminalSystem gts)
 		{

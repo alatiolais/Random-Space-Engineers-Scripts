@@ -25,7 +25,7 @@ namespace IngameScript.Organization
 			//First we grab all the containers with CustomData populated
 			customContainers = GetCargoContainersWithCustomData(thisShipsName);
 			//Then all the inventories on the grid that might contain the items we want
-			allInventories = GetAllShipInventories(thisShipsName);
+			allInventories = LocalGrid.GetAllLocalInventories();
 
 
 			foreach (IMyCargoContainer customCargo in customContainers)
@@ -70,37 +70,8 @@ namespace IngameScript.Organization
 			Echo($@"Items sorted to corresponding containers");
 		}
 
-		List<IMyInventory> GetAllShipInventories(string shipName)
-		{
-			List<IMyTerminalBlock> allBlocks = new List<IMyTerminalBlock>();
-			List<IMyInventory> inventories = new List<IMyInventory>();
-			GridTerminalSystem.GetBlocks(allBlocks); // Populate list with all blocks on the grid
-
-			foreach (IMyTerminalBlock block in allBlocks)
-			{
-				if (LocalGrid.IsLocal(block, GridTerminalSystem))
-				{
-					if (block is IMyCargoContainer || block is IMyShipConnector || block is IMyAssembler)
-					{
-						IMyInventory inventory = block.GetInventory(0); //Get block inventory
-						if (block is IMyAssembler)
-						{
-							inventory = block.GetInventory(1); //Since this is an assembler, get its output inventory
-						}
-						if (inventory.ItemCount > 0)
-						{
-							inventories.Add(inventory);
-						}
-					}
-				}
-			}
-
-			return inventories;
-		}
-
 		List<IMyCargoContainer> GetCargoContainersWithCustomData(string shipName)
 		{
-
 			List<IMyCargoContainer> cargoContainers = new List<IMyCargoContainer>();
 			List<IMyCargoContainer> customContainers = new List<IMyCargoContainer>();
 			//List<IMyTerminalBlock> allBlocks = new List<IMyTerminalBlock>(); 
