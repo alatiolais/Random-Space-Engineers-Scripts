@@ -14,13 +14,13 @@ namespace IngameScript.Organization
 		void Main()
 		{
 			List<IMyTerminalBlock> allBlocks = new List<IMyTerminalBlock>();
-			string oldName = "Teroc Stoned";//Use this variable while renaming
-			string inputString = "*Teroc-Stoned*";
+			string oldName = "[LCD]";//Use this variable while renaming
+			string inputString = "[LCD Teroc-Stoned]";
 
 			GridTerminalSystem.GetBlocks(allBlocks); //Populate allBlocks list with list of all blocks on grid
 
-			addShipNameToTerminalBlocks(inputString, allBlocks);
-			//replaceShipNameToTerminalBlocks(inputString, oldName, allBlocks);
+			//addShipNameToTerminalBlocks(inputString, allBlocks);
+			replaceShipNameToTerminalBlocks(inputString, oldName, allBlocks);
 		}
 
 		void addShipNameToTerminalBlocks(string shipName, List<IMyTerminalBlock> Blocks)

@@ -20,14 +20,11 @@ namespace IngameScript.Organization
         {
 			List<IMyCargoContainer> customCargoContainers = GetCargoContainersWithCustomData();
 
-			IMyCargoContainer containerB = GridTerminalSystem.GetBlockWithName("MAIN STORAGE ") as IMyCargoContainer;
-
 			List<IMyCargoContainer> toCargo = new List<IMyCargoContainer>();
 			List<IMyCargoContainer> fromCargo = new List<IMyCargoContainer>();
 
 			foreach (IMyCargoContainer customCargo in customCargoContainers)
 			{
-				//IMyInventory customCargoInv = customCargo.GetInventory(0);
 				string customCargoData = customCargo.CustomData;
 
 				if (customCargoData.Contains("*TO*"))
